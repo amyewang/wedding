@@ -1,0 +1,378 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>A+J</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&family=Charis+SIL:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary-color: #4a7c94; /* Richer Muted Blue */
+            --bg-color: #e8f1f5; /* Cooler Blue Background */
+            --card-bg: #ffffff; /* Keep card background clean white */
+            --text-main: #2c3e50; /* Deep Navy Charcoal */
+            --text-muted: #888888; /* Muted grey */
+        }
+
+        body {
+            font-family: 'Charis SIL', serif;
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            margin: 0;
+            padding: 40px 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 30px;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 600px; /* Limits width on desktop for readability */
+            background: var(--card-bg);
+            padding: 60px 40px;
+            border: 2px solid var(--primary-color);
+            outline: 1px solid var(--primary-color);
+            outline-offset: -10px;
+            box-shadow: 0 15px 35px rgba(74, 124, 148, 0.15);
+            text-align: center;
+        }
+
+        .footer-card {
+            width: 100%;
+            max-width: 600px;
+            background: var(--card-bg);
+            padding: 30px 40px;
+            border: 2px solid var(--primary-color);
+            outline: 1px solid var(--primary-color);
+            outline-offset: -10px;
+            box-shadow: 0 10px 25px rgba(74, 124, 148, 0.1);
+            text-align: center;
+            box-sizing: border-box;
+        }
+
+        .footer-card a {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.4rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            font-weight: 700;
+        }
+
+        header {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+
+        h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: 3rem;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            color: var(--primary-color);
+            margin: 0;
+        }
+
+        h2 {
+            font-family: 'Charis SIL', serif;
+            font-size: 1.2rem;
+            color: var(--text-muted);
+            margin-top: 10px;
+            font-weight: 400;
+        }
+
+        .schedule-list {
+            display: flex;
+            flex-direction: column;
+            gap: 40px;
+        }
+
+        .day-card {
+            background: none;
+            padding: 0;
+            border: none;
+            box-shadow: none;
+        }
+
+        .day-name {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.8rem;
+            font-weight: 700;
+            margin-bottom: 10px;
+            display: block;
+            color: var(--primary-color);
+            border-bottom: 1px solid #e2e8f0;
+            display: inline-block;
+            padding-bottom: 5px;
+            margin-bottom: 20px;
+        }
+
+        .events {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .event-item {
+            padding: 10px 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 2px;
+        }
+
+        .sub-events {
+            list-style: none;
+            padding: 10px 0 0 0;
+            margin: 10px 0 0 0;
+            border-top: 1px solid #f1f5f9;
+            width: 100%;
+        }
+
+        .sub-event-item {
+            margin-bottom: 12px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .event-group {
+            margin: 20px 0;
+        }
+
+        .group-label {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.1rem;
+            font-weight: 700;
+            color: var(--primary-color);
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            display: block;
+            border-bottom: 1px double var(--primary-color);
+            width: fit-content;
+            margin: 0 auto 15px;
+            padding-bottom: 5px;
+        }
+
+        .event-item > span:first-child {
+            font-weight: 600;
+            font-size: 1.1rem;
+            letter-spacing: 0.5px;
+        }
+
+        .sub-event-item span:first-child {
+            font-weight: 400;
+            font-size: 1rem;
+        }
+
+        .subtext {
+            font-size: 0.9rem;
+            color: var(--text-muted);
+            font-style: italic;
+            max-width: 80%;
+        }
+
+        .event-details {
+            margin-top: 5px;
+            width: 100%;
+        }
+
+        .event-details summary {
+            font-size: 0.85rem;
+            color: var(--primary-color);
+            cursor: pointer;
+            list-style: none;
+            text-decoration: underline;
+            text-underline-offset: 3px;
+            font-family: 'Charis SIL', serif;
+            transition: color 0.3s ease;
+        }
+
+        .event-details summary::-webkit-details-marker {
+            display: none;
+        }
+
+        .event-details summary:hover {
+            color: var(--text-main);
+        }
+
+        .details-content {
+            margin-top: 10px;
+            padding: 0 10px;
+        }
+
+        a {
+            color: var(--primary-color);
+            text-decoration: underline;
+            text-underline-offset: 3px;
+            transition: color 0.3s ease;
+        }
+
+        a:hover {
+            color: var(--text-main);
+        }
+
+        .time {
+            font-weight: 400;
+            color: #7ba3b8; /* Clearer accent blue */
+            font-size: 0.9rem;
+            text-transform: uppercase;
+        }
+
+        /* Overlay for the celebration surprise */
+        .overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            background: rgba(232, 241, 245, 0.9); /* Matching --bg-color but with opacity */
+            display: none;
+            justify-content: center;
+            align-items: center;
+            z-index: 2000;
+            pointer-events: none;
+        }
+
+        .overlay.active {
+            display: flex;
+        }
+
+        .overlay img {
+            max-width: 90%;
+            max-height: 90%;
+            transform: scale(0);
+            opacity: 0;
+        }
+
+        .overlay.active img {
+            animation: zoomAndFade 2.5s ease-in-out forwards;
+        }
+
+        @keyframes zoomAndFade {
+            0% { transform: scale(0.2); opacity: 0; }
+            40% { transform: scale(1); opacity: 1; }
+            70% { transform: scale(1.1); opacity: 1; }
+            100% { transform: scale(3); opacity: 0; }
+        }
+
+        /* Responsive adjustment for larger screens */
+        @media (min-width: 768px) {
+            h1 { font-size: 3.5rem; }
+            .container { padding: 80px 60px; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <header>
+            <h1>Amy & Jack</h1>
+            <h2>May 28, 2026</h2>
+        </header>
+
+        <div class="schedule-list">
+            <!-- Thursday -->
+            <section class="day-card">
+                <span class="day-name">Thursday, May 28</span>
+                <ul class="events">
+                    <li class="event-item">
+                        <span>Civil Ceremony</span>
+                        <span class="subtext"><a href="https://maps.app.goo.gl/VgiEKtjk1e7vRcWAA">141 Worth Street, Manhattan</a></span>
+                        <span class="time">~ 1:45 - 3:30 PM</span>
+                        <details class="event-details">
+                            <summary>Click for more details</summary>
+                            <div class="details-content">
+                                <span class="subtext">Everyone please get to 141 Worth St by 1:45! We will meet the photographers around 2:00 PM. Our appointment is at 2:30 PM, and Eva & Sarah will come with us inside to be our witnesses for the ceremony. Everyone else will wait outside patiently, but don't go too far!! Please meet us at the exit when we are done (a text will be sent - probably around 2:45 PM) for a confetti throw exit (confetti will be provided)! After we're done, we will take pictures with everyone around the City Hall area.</span>
+                            </div>
+                        </details>
+                        <ul class="sub-events">
+                            <li class="sub-event-item">
+                                <span>Everyone Arrives</span>
+                                <span class="time">1:45 PM</span>
+                            </li>
+                            <li class="sub-event-item">
+                                <span>Ceremony Appointment</span>
+                                <span class="time">2:30 PM</span>
+                            </li>
+                            <li class="sub-event-item">
+                                <span>Photos with everyone around City Hall</span>
+                                <span class="time">3:00 PM</span>
+                            </li>
+                        </ul>
+                    </li>
+                    <li class="event-item">
+                        <span>Head Uptown to Amy & Jack's Apartment</span>
+                        <span class="subtext"><a href="https://maps.app.goo.gl/w9kayN2h89Uhc5T9A">310 E 81st St, Apt 4</a></span>
+                        <span class="time">3:30 PM</span>
+                        <details class="event-details">
+                            <summary>Click for more details</summary>
+                            <div class="details-content">
+                                <span class="subtext">Amy & Jack will take the subway so we can get some pics in the subway. Everyone else, feel free to subway or take a car! Light refreshments & snacks will be provided at the apartment! Amy & Jack will go take pictures with the photographers around the neighborhood at this time and meet everyone back at home.</span>  
+                            </div>
+                        </details>
+                    </li>
+                    <li class="event-item">
+                        <span>Dinner at Cafe China</span>
+                        <span class="subtext"><a href="https://maps.app.goo.gl/Rb5fqg2cUVaZPFkC7">59 W 37th St</a></span>
+                        <span class="time">7:00 PM</span>
+                        <span class="subtext">We will head down at around 6:15</span>
+                    </li>
+                </ul>
+            </section>
+
+            <!-- Friday -->
+            <section class="day-card">
+                <span class="day-name">Friday, May 29</span>
+                <ul class="events">
+                    <li class="event-item">
+                        <span>Some sort of group activity? Maybe Natural History Museum?</span>
+                        <span class="time">At some point...</span>
+                    </li>
+                    <li class="event-item">
+                        <span>Dinner at Orsay</span>
+                        <span class="subtext"><a href="https://maps.app.goo.gl/yNoLtSACe97vA5rdA">1057 Lexington Ave</a></span>
+                        <span class="time">5:30 PM</span>
+                    </li>
+                </ul>
+            </section>
+
+            <!-- Saturday -->
+            <section class="day-card">
+                <span class="day-name">Saturday, May 30</span>
+                <ul class="events">
+                    <li class="event-item">
+                        <span>Picnic in Central Park</span>
+                        <span class="subtext"><a href="https://partiful.com/e/gYlI3xIowprQgJrN5aQa?">East Meadow, Central Park</a></span>
+                        <span class="time">1:00 PM</span>
+                    </li>
+                </ul>
+            </section>
+        </div>
+    </div>
+
+    <div class="footer-card">
+        <a href="#" id="celebrate-link">We're so excited to celebrate with you!</a>
+    </div>
+
+    <div id="image-overlay" class="overlay">
+        <img src="thibaut.png" alt="Thibaut">
+    </div>
+
+    <script>
+        document.getElementById('celebrate-link').addEventListener('click', function(e) {
+            e.preventDefault();
+            const overlay = document.getElementById('image-overlay');
+            overlay.classList.add('active');
+            
+            // Remove the active class after the animation completes (2.5s)
+            setTimeout(() => {
+                overlay.classList.remove('active');
+            }, 2500);
+        });
+    </script>
+
+</body>
+</html>
